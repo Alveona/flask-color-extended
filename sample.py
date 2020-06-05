@@ -1,41 +1,21 @@
 from flask import Flask, redirect
-import flask.ext.color
+from flask_color_extended import color
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-flask.ext.color.init_app(app)
+color.init_app(app)
 
-@app.route('/', methods=['GET', 'POST'])
-def hello_world():
+@app.route("/demo_get", methods=['GET'])
+def demo_get():
     import time
-    time.sleep(0.7)
-    return """
-<html>
-<img src="/favicon.ico" />
-<img src="/static/graphics.png" />
-<img src="/static/style.css" />
-<img src="/static/theme.css" />
-<img src="/static/awesome.css" />
-<img src="/auth/users/login" />
-<img src="/callback" />
-<form action="/" method="post">
-    <input type="submit" />
-</form>
+    time.sleep(0.3)
+    return "Ok!"
 
-</html>
-"""
-
-@app.route('/auth/users/login')
-def r():
-    return 'Hello World!'
-
-@app.route('/static/<example>')
-def lol(example):
-    return 'Hello World!'
-
-@app.route('/callback')
-def asd():
-    return redirect('/static/fffefe')
+@app.route("/demo_post", methods=['POST'])
+def demo_post():
+    import time
+    time.sleep(0.8)
+    return "Ok!"
 
 if __name__ == '__main__':
     app.run()

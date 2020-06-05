@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-    flaskext.color
+    flask_color_extended.color
     ~~~~~~~~~~~~~~
 
     Colors the requests in debugging mode
 
-    :copyright: (c) 2014 by Frozenball.
+    :copyright: (c) 2020 by Alveona.
     :license: MIT, see LICENSE for more details.
 """
 import time
@@ -36,12 +36,18 @@ def init_app(app):
     )
     hidePattern = app.config.get('COLOR_PATTERN_HIDE', r'/^$/')
     WSGIRequestHandler = werkzeug.serving.WSGIRequestHandler
-    
+    _handle = WSGIRequestHandler.handle
+
+    def handle(self):
+        self.request_started = time.time()
+        _handle(self)
+
     def log_request(self, code='-', size='-'):
+        response_time = int((time.time() - self.request_started) * 1e3)
         url = self.requestline.split(" ")[1]
         method = self.requestline.split(" ")[0]
         
-        if code == 200:
+        if str(code)[0] == '2':
             statusColor = TerminalColors.OKGREEN
         elif str(code)[0] in ['4', '5']:
             statusColor = TerminalColors.FAIL
@@ -51,7 +57,10 @@ def init_app(app):
         if re.search(hidePattern, url):
             return
 
-        print("{statusColor}{status}{colorEnd} {methodColor}{method}{colorEnd} {urlColor}{url}{colorEnd}".format(
+
+        print("[{requestTime}] {statusColor}{status}{colorEnd} {methodColor}{method}{colorEnd} {urlColor}{url} in {responseTime} ms {colorEnd}".format(
+            requestTime=self.log_date_time_string(),
+            responseTime=response_time,
             status=code,
             method=method,
             url=url,
@@ -61,5 +70,7 @@ def init_app(app):
             urlColor=TerminalColors.LITTLEGRAY if re.search(staticPattern, url) else TerminalColors.ENDC
         ))
 
+
+    WSGIRequestHandler.handle = handle
     WSGIRequestHandler.log_request = log_request
     werkzeug.serving.WSGIRequestHandler = WSGIRequestHandler

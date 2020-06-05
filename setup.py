@@ -2,16 +2,16 @@ from setuptools import setup
 
 
 setup(
-    name='Flask-Color',
-    version='0.2.1',
-    url='https://github.com/Frozenball/flask-color',
+    name='flask-color-extended',
+    version='0.1',
+    url='https://github.com/Alveona/flask-color-extended',
     license='MIT',
-    author='Frozenball',
-    author_email='orkkiolento@gmail.com',
-    description='flask-color is an extension for Flask that improves the built-in web server with colors when debugging. Unnecessary clutter such as time or IP are hidden.',
+    author='Alveona',
+    author_email='pomavau@yandex.ru',
+    description='flask-color-extended is an extension for Flask that improves the built-in web server with colors when debugging.',
     long_description=__doc__,
-    packages=['flaskext'],
-    namespace_packages=['flaskext'],
+    packages=['flask_color_extended'],
+    namespace_packages=['flask_color_extended'],
     zip_safe=False,
     platforms='any',
     install_requires=[
