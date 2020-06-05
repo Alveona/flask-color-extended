@@ -1,5 +1,7 @@
 flask-color-extended
 ===========
+[![PyPI version](https://badge.fury.io/py/flask-color-extended.svg)](https://badge.fury.io/py/flask-color-extended) 
+![GitHub stars](https://img.shields.io/github/stars/Alveona/flask-color-extended?style=social)
 
 ![](https://sun1-20.userapi.com/X8npCMHPcnaRGJ9AZcYvRzWZVj_toj2WqBgsEQ/PsFp0JavpSU.jpg)
 
