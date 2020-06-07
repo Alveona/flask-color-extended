@@ -5,8 +5,10 @@ flask-color-extended
 
 ![](https://sun1-20.userapi.com/X8npCMHPcnaRGJ9AZcYvRzWZVj_toj2WqBgsEQ/PsFp0JavpSU.jpg)
 
+Support Flask 0.11+ (no deprecation warnings anymore)  
+
 flask-color-extended is an extension for Flask that improves the built-in web server with colors when debugging.  
-Differs from original library (https://github.com/Teemu/flask-color) by including current time and overall response time.
+Differs from original library (https://github.com/Teemu/flask-color) by including current time and overall response time. Also supports new Flask versions.
 
 Installing
 ----------
